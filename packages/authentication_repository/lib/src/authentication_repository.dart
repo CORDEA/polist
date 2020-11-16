@@ -1,11 +1,12 @@
 import 'package:poly_api/poly_api.dart';
 
 class AuthenticationRepository {
-  AuthenticationRepository(this._client);
+  AuthenticationRepository({PolyApiClient client}) :
+      _client = client ?? PolyApiClient();
 
   final PolyApiClient _client;
 
   Future<void> logIn() {
-    return _client.logIn(false);
+    return _client.logIn();
   }
 }

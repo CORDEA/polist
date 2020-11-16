@@ -1,19 +1,20 @@
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/poly/v1.dart';
-import 'package:googleapis_auth/auth_browser.dart';
 
 const _scopes = [""];
 
 class PolyApiClient {
-  PolyApiClient(String id, String clientSecret)
-      : _clientId = ClientId(id, clientSecret);
+  GoogleSignIn _googleSignIn = GoogleSignIn.standard(
+    scopes: _scopes
+  );
 
-  final _clientId;
   PolyApi _api;
 
-  Future<void> logIn(bool immediate) {
-    return createImplicitBrowserFlow(_clientId, _scopes)
-        .then((value) => value.clientViaUserConsent(immediate: immediate))
-        .then((value) => _api = PolyApi(value));
+  Future<void> logIn() async {
+    await _googleSignIn.signIn();
+    final client = await _googleSignIn.authenticatedClient();
+    _api = PolyApi(client);
   }
 
   Future<ListAssetsResponse> getAssets() {
