@@ -6,7 +6,7 @@ class AuthenticationRepository {
 
   final PolyApiClient _client;
 
-  Future<void> logIn() {
-    return _client.logIn();
+  Future<bool> tryLogIn() {
+    return _client.tryLogIn();
   }
 }

@@ -20,6 +20,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Stream<LoginState> _mapLoginClickedToState(LoginState state) async* {
-    // TODO
+    yield await _repository.tryLogIn()
+        ? const LoginSuccess()
+        : const LoginFailure();
   }
 }

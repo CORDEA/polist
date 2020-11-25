@@ -5,16 +5,23 @@ import 'package:googleapis/poly/v1.dart';
 const _scopes = ["https://www.googleapis.com/auth/vrassetdata.readonly"];
 
 class PolyApiClient {
-  GoogleSignIn _googleSignIn = GoogleSignIn.standard(
-    scopes: _scopes
-  );
+  GoogleSignIn _googleSignIn = GoogleSignIn.standard(scopes: _scopes);
 
   PolyApi _api;
 
-  Future<void> logIn() async {
-    await _googleSignIn.signIn();
+  Future<bool> tryLogIn() async {
+    GoogleSignInAccount account;
+    try {
+      account = await _googleSignIn.signIn();
+    } catch (_) {
+      return false;
+    }
+    if (account == null) {
+      return false;
+    }
     final client = await _googleSignIn.authenticatedClient();
     _api = PolyApi(client);
+    return true;
   }
 
   Future<ListAssetsResponse> getAssets() {
