@@ -19,7 +19,9 @@ class LogInPage extends StatelessWidget {
         ),
         body: Center(
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<LoginBloc>().add(LoginClicked());
+            },
             child: const Text('Log in'),
           ),
         ),
