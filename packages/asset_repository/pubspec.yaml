@@ -11,3 +11,5 @@ environment:
 dependencies:
   poly_api:
     path: ../poly_api
+
+  equatable: ^1.2.5
