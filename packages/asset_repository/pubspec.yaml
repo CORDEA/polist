@@ -1,0 +1,13 @@
+name: asset_repository
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  poly_api:
+    path: ../poly_api
