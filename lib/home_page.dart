@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polist/home_content.dart';
 
 class HomePage extends StatelessWidget {
   static Route route() => MaterialPageRoute(builder: (_) => HomePage());
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Center(),
+      body: HomeContent(),
     );
   }
 }
