@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:polist/asset/asset_bloc.dart';
 import 'package:polist/login/login_bloc.dart';
 import 'package:polist/login_page.dart';
+import 'package:poly_api/poly_api.dart';
 
 void main() {
+  final PolyApiClient client = PolyApiClient();
   runApp(App(
-    authenticationRepository: AuthenticationRepository(),
-    assetRepository: AssetRepository(),
+    authenticationRepository: AuthenticationRepository(client: client),
+    assetRepository: AssetRepository(client: client),
   ));
 }
 

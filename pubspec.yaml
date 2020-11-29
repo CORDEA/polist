@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  poly_api:
+    path: ./packages/poly_api
   authentication_repository:
     path: ./packages/authentication_repository
   asset_repository:
