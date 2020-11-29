@@ -1,21 +1,42 @@
+import 'package:asset_repository/asset_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:polist/asset/asset_bloc.dart';
 import 'package:polist/login/login_bloc.dart';
 import 'package:polist/login_page.dart';
 
 void main() {
-  runApp(App(authenticationRepository: AuthenticationRepository()));
+  runApp(App(
+    authenticationRepository: AuthenticationRepository(),
+    assetRepository: AssetRepository(),
+  ));
 }
 
 class App extends StatelessWidget {
-  App({Key key, @required authenticationRepository})
+  App({Key key, @required authenticationRepository, @required assetRepository})
       : assert(authenticationRepository != null),
+        assert(assetRepository != null),
         _authenticationRepository = authenticationRepository,
+        _assetRepository = assetRepository,
         super(key: key);
 
   final AuthenticationRepository _authenticationRepository;
+  final AssetRepository _assetRepository;
 
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: _authenticationRepository,
+      child: BlocProvider(
+        create: (_) => AssetBloc(_assetRepository),
+        child: _AppView(),
+      ),
+    );
+  }
+}
+
+class _AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +46,7 @@ class App extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BlocProvider(
-        create: (context) => LoginBloc(_authenticationRepository),
+        create: (context) => LoginBloc(RepositoryProvider.of(context)),
         child: LogInPage(),
       ),
     );
