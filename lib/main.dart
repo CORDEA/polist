@@ -44,8 +44,15 @@ class _AppView extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+        primaryColor: Colors.blue[400],
+        accentColor: Colors.deepPurple[900],
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.deepPurple[900],
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))
+        ),
       ),
       home: BlocProvider(
         create: (context) => LoginBloc(RepositoryProvider.of(context)),
