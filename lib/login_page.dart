@@ -17,15 +17,35 @@ class LogInPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Log in'),
-        ),
-        body: Center(
-          child: RaisedButton(
-            onPressed: () {
-              context.read<LoginBloc>().add(LoginClicked());
-            },
-            child: const Text('Log in'),
+        body: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment(0, 0.8),
+                  child: Text(
+                    "polist",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                        onPressed: () {
+                          context.read<LoginBloc>().add(LoginClicked());
+                        },
+                        child: const Text('Log in')),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
