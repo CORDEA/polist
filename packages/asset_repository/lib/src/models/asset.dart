@@ -6,11 +6,12 @@ class Asset extends Equatable {
   final String description;
   final String displayName;
   final String license;
+  final String thumbnailUrl;
 
   Asset(this.authorName, this.createTime, this.description, this.displayName,
-      this.license);
+      this.license, this.thumbnailUrl);
 
   @override
   List<Object> get props =>
-      [authorName, createTime, description, displayName, license];
+      [authorName, createTime, description, displayName, license, thumbnailUrl];
 }

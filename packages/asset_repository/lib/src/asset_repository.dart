@@ -10,7 +10,7 @@ class AssetRepository {
   Future<List<Asset>> getAssets() {
     return _client.getAssets().then((value) => value.assets
         .map((a) => Asset(a.authorName, a.createTime, a.description,
-            a.displayName, a.license))
+            a.displayName, a.license, a.thumbnail.url))
         .toList());
   }
 }
