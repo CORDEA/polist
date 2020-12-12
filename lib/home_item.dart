@@ -1,5 +1,6 @@
 import 'package:asset_repository/asset_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:polist/detail_page.dart';
 
 class HomeItem extends StatelessWidget {
   HomeItem({Key key, @required Asset asset})
@@ -13,7 +14,9 @@ class HomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(DetailPage.route(_asset));
+        },
         child: Container(
           padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
           child: Row(
