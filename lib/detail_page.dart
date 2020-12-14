@@ -15,10 +15,23 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_asset.displayName),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text(_asset.displayName),
+            expandedHeight: 200,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Container(
+                  height: 1000,
+                )
+              ],
+            ),
+          ),
+        ],
       ),
-      body: Container(),
     );
   }
 }
