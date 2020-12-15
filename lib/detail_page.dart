@@ -1,5 +1,6 @@
 import 'package:asset_repository/asset_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:polist/detail_item.dart';
 
 class DetailPage extends StatelessWidget {
   static Route route(Asset asset) =>
@@ -24,9 +25,22 @@ class DetailPage extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Container(
-                  height: 1000,
-                )
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text(_asset.description),
+                ),
+                Divider(),
+                DetailItem(icon: Icons.person, title: _asset.authorName),
+                Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16),
+                  child: Divider(),
+                ),
+                DetailItem(icon: Icons.history, title: _asset.createTime),
+                Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16),
+                  child: Divider(),
+                ),
+                DetailItem(icon: Icons.public, title: _asset.license),
               ],
             ),
           ),
