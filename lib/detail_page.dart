@@ -20,7 +20,8 @@ class DetailPage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             title: Text(_asset.displayName),
-            expandedHeight: 200,
+            expandedHeight: 250,
+            flexibleSpace: Image.network(_asset.thumbnailUrl, fit: BoxFit.cover),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
